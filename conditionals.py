@@ -5,7 +5,7 @@
 time = 1416
 
 if time < 1200 and time > 500:
-    print('Good Morning!")
+    print("Good Morning!")
     if day != 'Saterday' and day != "Sunday":
         print("How has school been?")
    
