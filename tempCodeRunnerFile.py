@@ -1,1 +1,2 @@
-True
+
+        print('Fizz')
