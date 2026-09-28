@@ -30,14 +30,14 @@ print(f"Has a number:{number}")
 print(f"Has a symbol:{symbol}")
 score = 0
 if len(password) >= 8:
-    score = 1
+    score += 1
     if letter.isupper():
-        score = 1
+        score += 1
     if letter.islower():
-        score = 1
+        score += 1
     if letter.isnumeric():
-        score = 1
+        score += 1
     if letter in "!?@#$%()[]<>":
-        score = 1
+        score += 1
 
 print(f"Your password strength is:{score}")
