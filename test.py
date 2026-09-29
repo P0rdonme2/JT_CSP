@@ -1,3 +1,12 @@
 # JT, 7th, First program
+def hello(name):
+    return f"Hello {name}"
 
-print("Hello World!")
+user = input ("What is your name:")
+teacher = "Ms. LaRose"
+
+print(hello(user))
+print(hello(teacher))
+print(hello("Alex"))
+print(hello("World!!!!"))
+
