@@ -7,12 +7,12 @@
 # add letter to a variable with an empty string
 # build decripture change the users number to a negative
 
-choice = input("Would you like to Encrypt or Decrypt a message:")
+choice = input("Would you like to (E)ncrypt or (D)ecrypt a message:")
 message = input ("Enter your message:")
 shift = int(input("Enter a shift amount:"))
-finished = ""
-for letter in message:
 
+for letter in message:
+    finish = ""
     if letter .isalpha():
         scrambeled = ord(letter)+ shift
         

@@ -10,7 +10,12 @@ transportation = float(input("What is your monthly transportation:"))
 
 savings = income * 0.10
 
-spending = (income-rent) - (income-utilities) - (income-groceries) - (income-transportation)
+rent_pct = (rent / income) * 100
+utilities_pct = (utilities / income) * 100
+groceries_pct = (groceries / income) * 100
+transportation_pct = (transportation / income) * 100
+savings_pct = (savings / income) * 100
+spending_money = income - rent - utilities - groceries - transportation - savings
 
 print(f"Your rent is $ {rent:.2f} and that is {round(rent_pct)} % of your income.")
 print(f"Your utilities are $ {utilities:.2f} and that is {round(utilities_pct)} % of your income.")
