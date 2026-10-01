@@ -11,15 +11,22 @@ choice = input("Would you like to (E)ncrypt or (D)ecrypt a message:")
 message = input ("Enter your message:")
 shift = int(input("Enter a shift amount:"))
 
-for letter in message:
-    finish = ""
-    if letter .isalpha():
-        scrambeled = ord(letter)+ shift
+
+def cipher(message, shift):
+    finished = ""
+    for letter in message:
+
+        if letter .isalpha():
+            scrambeled = ord(letter)+ shift
         
-    if scrambeled > 90 and letter.isupper():
-        scrambeled -= 26
-    if scrambeled > 122 and letter.islower():
-        scrambeled -= 26
-    finished+= chr(scrambeled)
+        if scrambeled > 90 and letter.isupper():
+            scrambeled -= 26
+        if scrambeled > 122 and letter.islower():
+            scrambeled -= 26
+        finished+= chr(scrambeled)
     
-print(finished)
+    print(finished)
+
+
+
+cipher(message, shift)
