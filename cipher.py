@@ -15,25 +15,27 @@ shift = int(input("Enter a shift amount:"))
 def cipher(message, shift):
     finished = ""
     for letter in message:
-
         if letter .isalpha():
-            scrambeled = ord(letter)+ shift
+            if letter.isupper():
+                scrambeled = (ord(letter) - ord("A")+ shift) % 26 + ord("A") 
+            else:
+                scrambeled = (ord(letter) - ord("a") + shift) % 26 + ord("a")
+            
         
-        if scrambeled > 90 and letter.isupper():
-            scrambeled -= 26
-        if scrambeled > 122 and letter.islower():
-            scrambeled -= 26
-        if scrambeled > 90 and letter.isupper():
-            scrambeled += 26
-        if scrambeled > 122 and letter.islower():
-            scrambeled += 26
         
         finished += chr(scrambeled)
-       
-    
-    print(finished)
+    else:
+        finished += letter
 
+    return finished
 
+    if choice.upper() == "D":
+        shift = -shift
 
+result = cipher(message, shift)
 
-cipher(message, shift)
+if choice.upper() == "E":
+     print("Your encrypted message is:", result)
+else:
+     print("Your decrypted message is:", result)
+
