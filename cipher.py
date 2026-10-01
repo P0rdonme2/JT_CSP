@@ -23,9 +23,22 @@ def cipher(message, shift):
             scrambeled -= 26
         if scrambeled > 122 and letter.islower():
             scrambeled -= 26
-        finished+= chr(scrambeled)
+        if scrambeled > 90 and letter.isupper():
+            scrambeled += 26
+        if scrambeled > 122 and letter.islower():
+            scrambeled += 26
+        
+        finished += chr(scrambeled)
+        if choice == "E":
+            finished = cipher (message, shift)
+            print(f"Your encripted message is:")
+        if choice == "D":
+            finished = cipher (message,  -shift)
+            print(f"Your decripted message is:")
+
     
     print(finished)
+
 
 
 
