@@ -1,0 +1,3 @@
+# JT Hangman
+
+"Obfuscate", "Mellifluous", "Perspicacious", "Sesquipedalian", "Ineffable", "Circumlocution", "Ephemeral", "Obstreperous", "Sagacious", "Pulchritudinous"
