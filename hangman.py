@@ -15,14 +15,23 @@ randomWord = randomWord.strip(' "')
 #gets rid of the quotes around the word
 print(randomWord)
 print(len(randomWord))
-guess = input("Guess a letter: ")
+count = 0
 
-if len(guess) == 1:
-    print("Good guess!")
-else:
-    print("Please guess one letter at a time!!!!!")
 
-    #file.write(content)
+while count <= 6:
+    guess = input("Guess a letter: ")
+
+    if len(guess) == 1:
+        for letter in randomWord:
+            if letter == guess:
+                print("You already guessed that letter!")
+                break
+            else:
+                print(letter)
+    else:
+        print("Please guess one letter at a time!!!!!")
+
+#file.write(content)
 
 #Create a list of 10 words on a seperate txt file
 
