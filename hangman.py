@@ -1,6 +1,21 @@
 # JT Hangman
 import random
 mylist = []
+def read_file(file):
+    with open(file, "r+") as file:
+        content = file.read()
+    
+    return content
+hangman =read_file("hang.txt")
+win_lose =read_file("win_lose.txt")
+
+randomWord = random.choice(hangman.split(","))
+randomWord = randomWord.strip(' "')
+#gets rid of the quotes around the word
+print(randomWord)
+print(len(randomWord))
+
+    #file.write(content)
 
 #Create a list of 10 words on a seperate txt file
 
