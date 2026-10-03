@@ -1,6 +1,7 @@
 # JT Hangman
 import random
 mylist = []
+guesses = []
 def read_file(file):
     with open(file, "r+") as file:
         content = file.read()
@@ -14,6 +15,12 @@ randomWord = randomWord.strip(' "')
 #gets rid of the quotes around the word
 print(randomWord)
 print(len(randomWord))
+guess = input("Guess a letter: ")
+
+if len(guess) == 1:
+    print("Good guess!")
+else:
+    print("Please guess one letter at a time!!!!!")
 
     #file.write(content)
 
