@@ -2,34 +2,24 @@
 import random
 mylist = []
 guesses = []
-def read_file(file):
-    with open(file, "r+") as file:
-        content = file.read()
+def read_file(hang.txt):
+    with open(hang.txt , "r") as file:
+        content = file.read(",").split
+        
+
     
-    return content
-hangman =read_file("hang.txt")
-win_lose =read_file("win_lose.txt")
-
-randomWord = random.choice(hangman.split(","))
-randomWord = randomWord.strip(' "')
+    
 #gets rid of the quotes around the word
-print(randomWord)
-print(len(randomWord))
+
 count = 0
+number_geusses = 6
 
 
-while count <= 6:
-    guess = input("Guess a letter: ")
 
-    if len(guess) == 1:
-        for letter in randomWord:
-            if letter == guess:
-                print("You already guessed that letter!")
-                break
-            else:
-                print(letter)
-    else:
-        print("Please guess one letter at a time!!!!!")
+
+
+
+
 
 #file.write(content)
 
