@@ -1,18 +1,32 @@
 # JT Hangman
 import random
-mylist = []
-guesses = []
-def read_file(hang.txt):
-    with open(hang.txt , "r") as file:
-        content = file.read(",").split
-        
 
-    
-    
+
+def read_words(filename):
+    with open(filename, "r") as file:
+        words = file.read().splitlines()
+
+    return words
+
+words = read_words("hang.txt")
+secret_word= random.choice(words)
+def load_stats(filename):
+    try:
+        with open(filename, "r") as file:
+            wins = int(file.readline())
+            losses = int(file.readline())
+
+    except FileNotFoundError:
+        wins = 0
+        losses = 0
+
+    return wins, losses
+
+wins, losses = load_stats("stats.txt")
+
 #gets rid of the quotes around the word
 
-count = 0
-number_geusses = 6
+
 
 
 
