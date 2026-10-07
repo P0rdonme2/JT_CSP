@@ -1,117 +1,119 @@
-# JT Hangman
+# JT Hangman Assignment
+
+
+import os
 import random
+
+MAX_WRONG = 6 
 
 
 def read_words(filename):
+    print(f"Loading word list from {filename}...")
     with open(filename, "r") as file:
-        words = file.read().splitlines()
-
+        words = []
+        for line in file:
+            word = line.strip().strip('"').strip("'").upper()
+            if word:
+                words.append(word)
     return words
 
-words = read_words("hang.txt")
-secret_word= random.choice(words)
+
 def load_stats(filename):
     try:
         with open(filename, "r") as file:
-            wins = int(file.readline())
-            losses = int(file.readline())
-
+            wins = int(file.readline().strip())
+            losses = int(file.readline().strip())
     except FileNotFoundError:
         wins = 0
         losses = 0
+    except ValueError:
+        wins = 0
+        losses = 0
 
+    print(f"Loading stats from {filename}... (Wins: {wins}, Losses: {losses})")
     return wins, losses
 
-wins, losses = load_stats("stats.txt")
 
-#gets rid of the quotes around the word
-
-
-
-
-
+def save_stats(filename, wins, losses):
+   
+    with open(filename, "w") as file:
+        file.write(str(wins) + "\n")
+        file.write(str(losses) + "\n")
 
 
+def show_display_word(secret_word, guessed_letters):
+    
+    display_word = ""
+    for letter in secret_word:
+        if letter in guessed_letters:
+            display_word = display_word + letter + " "
+        else:
+            display_word = display_word + "_ "
+    return display_word.strip()
 
 
+def play_one_game(secret_word):
+    guessed_letters = []
+    wrong_guesses = 0
 
-#file.write(content)
+    while True:
+        print()
+        print("Word:", show_display_word(secret_word, guessed_letters))
+        if len(guessed_letters) == 0:
+            print("Guessed letters: (none yet)")
+        else:
+            print("Guessed letters:", ", ".join(guessed_letters))
+        print("Wrong guesses remaining:", MAX_WRONG - wrong_guesses)
 
-#Create a list of 10 words on a seperate txt file
+        
+        all_found = True
+        for letter in secret_word:
+            if letter not in guessed_letters:
+                all_found = False
+        if all_found:
+            print()
+            print("Congratulations! You guessed the word:", secret_word)
+            return True
 
-#create another file holds win/loss counts 
-#use split (",") on the content of the words txt document to create your list of words
+        
+        if wrong_guesses >= MAX_WRONG:
+            print()
+            print("Out of guesses. The word was:", secret_word)
+            return False
 
-# pull win and lose totals from the other txt file and save them as 2 seperate variables
+        guess = input("Guess a letter: ").strip().upper()
+        if len(guess) != 1 or not guess.isalpha():
+            print("Please enter a single letter.")
+            continue
+        if guess in guessed_letters:
+            print("You already guessed", guess + ". That does not cost an attempt.")
+            continue
 
-# Build the hangman
-
-
-# save the correct word as a variable random.choice(name of list)
-#number of wrong guesses
-#what letters have been guessed
-
-
-#function to display the hang man (needs the number of wrong guesses)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Function to show the letters and spaces (The correct word, letters that have been guessed)
-# variable for display word (starts as an empty string)
-#loop over the correct word
-# check if letter has been guessed
-#then add the letter to the display word
-#if they havent guessed the letter
-#add an underscore to thedisplay word
-# return the finished display word (outside of the loop)
+        guessed_letters.append(guess)
+        if guess in secret_word:
+            print("Nice!", guess, "is in the word.")
+        else:
+            wrong_guesses = wrong_guesses + 1
+            print("Sorry,", guess, "is not in the word.")
 
 
+def main():
+    
+    words = read_words("words.txt")
+    wins, losses = load_stats("stats.txt")
+
+    secret_word = random.choice(words)
+    won = play_one_game(secret_word)
+
+    if won:
+        wins = wins + 1
+    else:
+        losses = losses + 1
+
+    save_stats("stats.txt", wins, losses)
+    print()
+    print("Updated Stats — Wins:", wins, "Losses:", losses)
 
 
-
-
-
-
-
-
-
-
-
-# main game loop (while True)
-#call function to show hangman
-#print function call to show display word
-#creat variable and ask user to guessed letters
-# check if not letter in word:
-#increase incorrect guesses
-#check if display word is the same as the word
-# Tell user they won!
-#increase win total 
-#ask if they want to play again
-#reset random word, rest wrong guess count
-#check to see if they lost (if they have 6 wrong guesses)
-#Tell them they lost
-#tell them what the word was
-#Increase the lost count
-#ask if they want to play again
+if __name__ == "__main__":
+    main()
